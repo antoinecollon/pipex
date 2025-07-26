@@ -6,14 +6,15 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:06:48 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:24:00 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:52:48 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	perror_exit(const char *context)
+void	perror_exit(t_pipex *pip, const char *context)
 {
+	cleanup(pip);
 	perror(context);
 	exit(EXIT_FAILURE);
 }

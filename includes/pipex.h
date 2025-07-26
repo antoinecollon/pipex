@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:41:54 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:24:12 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:54:09 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 /* error_handler.c*/
-void	perror_exit(const char *context);
+void	perror_exit(t_pipex *pip, const char *context);
 void	cleanup(t_pipex *pip);
 
 /* parsing.c */

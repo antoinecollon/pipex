@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:41:37 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:24:40 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:55:03 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,19 @@ void	parse_args(char **av, char **envi, t_pipex *pip)
 {
 	pip->infile = open(av[1], O_RDONLY);
 	if (pip->infile < 0)
-		perror_exit(av[1]);
+		perror_exit(pip, av[1]);
 	pip->outfile = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pip->outfile < 0)
-		perror_exit(av[4]);
+		perror_exit(pip, av[4]);
 	pip->cmd1 = ft_split(av[2], ' ');
 	pip->cmd2 = ft_split(av[3], ' ');
 	if (!pip->cmd1 || !pip->cmd2)
-		perror_exit("Split failed");
+		perror_exit(pip, "Split failed");
 	if (!pip->cmd1[0] ||!pip->cmd2[0])
-		perror_exit("Empty command");
+		perror_exit(pip, "Empty command");
 	pip->cmd_path1 = get_cmd_path(pip->cmd1[0], envi);
 	pip->cmd_path2 = get_cmd_path(pip->cmd2[0], envi);
 	if (!pip->cmd_path1 || !pip->cmd_path2)
-		perror_exit("Command not found");
+		perror_exit(pip, "Command not found");
 	pip->envi = envi;
 }
