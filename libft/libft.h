@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 14:19:13 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 16:33:43 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:06:51 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <limits.h>
-# include "gnl/get_next_line.h"
 # include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
 
 //PART_1
 int		ft_atoi(const char *nptr);
-long	ft_atol(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
@@ -46,7 +43,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-void	ft_free_split(char **tab);
+void	ft_free_split(char **map);
 
 //PART_2
 char	*ft_substr(char const *s, unsigned int start, size_t len);

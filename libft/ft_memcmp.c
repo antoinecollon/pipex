@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acollon <acollon@student.s19.be>           +#+  +:+       +#+        */
+/*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:27:32 by acollon           #+#    #+#             */
-/*   Updated: 2025/04/12 15:35:57 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:15:49 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	str1 = (const unsigned char *)s1;
 	str2 = (const unsigned char *)s2;
+	if (!s1 && !s2)
+		return (0);
 	while (i < n)
 	{
 		if (str1[i] != str2[i])
@@ -40,3 +42,13 @@ char    s2[] = "abc";
 printf("%d\n", ft_memcmp(s1, s2, 7));
 return (0);
 }*/
+// #include <stdio.h>
+
+// int	main()
+// {
+// 	char *s1 = NULL;
+// 	char *s2 = NULL;
+// 	int size = 5;
+
+// 	printf("%d\n", ft_memcmp(s1, s2, size));
+// }

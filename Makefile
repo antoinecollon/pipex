@@ -6,7 +6,7 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 13:22:58 by acollon           #+#    #+#              #
-#    Updated: 2025/07/22 14:01:29 by acollon          ###   ########.fr        #
+#    Updated: 2025/07/26 18:19:06 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ SRCS	= \
 		src/parsing.c
 
 OBJS	= $(SRCS:.c=.o)
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(FT_PRINTF) $(LIBFT) $(OBJS)
-	$$(CC) $(CFLAGS) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I $(INC_DIR) -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)

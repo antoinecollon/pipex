@@ -5,24 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 14:03:16 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/22 14:03:43 by acollon          ###   ########.fr       */
+/*   Created: 2025/07/26 18:04:46 by acollon           #+#    #+#             */
+/*   Updated: 2025/07/26 18:06:28 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_split(char **tab)
+void	ft_free_split(char **map)
 {
 	int	i;
 
-	i = 0;
-	if (!tab)
+	if (!map)
 		return ;
-	while (tab[i])
+	i = 0;
+	while (map[i])
 	{
-		free(tab[i]);
+		free(map[i]);
 		i++;
 	}
-	free(tab);
+	free(map);
 }

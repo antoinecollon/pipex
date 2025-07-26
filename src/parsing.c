@@ -6,13 +6,13 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:41:37 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 16:56:51 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 18:24:40 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../includes/pipex.h"
 
-static char	**get_path(char *cmd, char **envi)
+static char	**get_path(char **envi)
 {
 	char	**paths;
 	int		i;
@@ -42,7 +42,7 @@ static char	*get_cmd_path(char *cmd, char **envi)
 		return (NULL);
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
-	paths = get_path(cmd, envi);
+	paths = get_path(envi);
 	if (!paths)
 		return (NULL);
 	while (paths[i])
@@ -51,11 +51,11 @@ static char	*get_cmd_path(char *cmd, char **envi)
 		path = ft_strjoin(tmp, cmd);
 		free (tmp);
 		if (access(path, X_OK) == 0)
-			return (free_split(paths), path);
+			return (ft_free_split(paths), path);
 		free(path);
 		i++;
 	}
-	return (free_split(paths), NULL);
+	return (ft_free_split(paths), NULL);
 }
 
 void	parse_args(char **av, char **envi, t_pipex *pip)
@@ -69,12 +69,12 @@ void	parse_args(char **av, char **envi, t_pipex *pip)
 	pip->cmd1 = ft_split(av[2], ' ');
 	pip->cmd2 = ft_split(av[3], ' ');
 	if (!pip->cmd1 || !pip->cmd2)
-		error_exit("Split failed\n");
+		perror_exit("Split failed");
 	if (!pip->cmd1[0] ||!pip->cmd2[0])
-		error_exit("Empty command\n");
+		perror_exit("Empty command");
 	pip->cmd_path1 = get_cmd_path(pip->cmd1[0], envi);
 	pip->cmd_path2 = get_cmd_path(pip->cmd2[0], envi);
 	if (!pip->cmd_path1 || !pip->cmd_path2)
-		error_exit("Command not found\n");
+		perror_exit("Command not found");
 	pip->envi = envi;
 }

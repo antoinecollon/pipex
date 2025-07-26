@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 09:06:48 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:24:00 by acollon          ###   ########.fr       */
+/*   Created: 2025/05/11 15:25:46 by acollon           #+#    #+#             */
+/*   Updated: 2025/05/11 15:26:17 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-void	perror_exit(const char *context)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	perror(context);
-	exit(EXIT_FAILURE);
-}
+	int	i;
 
-void	cleanup(t_pipex *pip)
-{
-	if (pip->cmd1)
-		ft_free_split(pip->cmd1);
-	if (pip->cmd2)
-		ft_free_split(pip->cmd2);
-	free(pip->cmd_path1);
-	free(pip->cmd_path2);
-	if (pip->infile > 0)
-		close(pip->infile);
-	if (pip->outfile > 0)
-		close(pip->outfile);
+	i = 0;
+	while ((unsigned char)s1[i] && (unsigned char)s2[i])
+	{
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

@@ -60,5 +60,4 @@ int	main(void)
 	free(node3);
 
 	return (0);
-}
-*/
+}*/
