@@ -6,35 +6,45 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:41:37 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/22 10:33:49 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/26 16:56:51 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	*get_cmd_path(char *cmd, char **envp)
+static char	**get_path(char *cmd, char **envi)
+{
+	char	**paths;
+	int		i;
+
+	i = 0;
+	while (envi && envi[i])
+	{
+		if (ft_strncmp(envi[i], "PATH=", 5) == 0)
+		{
+			paths = ft_split(envi[i] + 5, ':');
+			break ;
+		}
+		i++;
+	}
+	return (paths);
+}
+
+static char	*get_cmd_path(char *cmd, char **envi)
 {
 	char	**paths;
 	char	*path;
 	char	*tmp;
 	int		i;
 
+	i = 0;
 	if (!cmd || !*cmd)
 		return (NULL);
-	paths = NULL;
-	i = 0;
-	while (envp && envp[i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			paths = ft_split(envp[i] + 5, ':');
-			break ;
-		}
-		i++;
-	}
+	if (access(cmd, X_OK) == 0)
+		return (ft_strdup(cmd));
+	paths = get_path(cmd, envi);
 	if (!paths)
 		return (NULL);
-	i = 0;
 	while (paths[i])
 	{
 		tmp = ft_strjoin(paths[i], "/");
@@ -48,7 +58,7 @@ static char	*get_cmd_path(char *cmd, char **envp)
 	return (free_split(paths), NULL);
 }
 
-void	parse_args(char **av, char **envp, t_pipex *pip)
+void	parse_args(char **av, char **envi, t_pipex *pip)
 {
 	pip->infile = open(av[1], O_RDONLY);
 	if (pip->infile < 0)
@@ -62,9 +72,9 @@ void	parse_args(char **av, char **envp, t_pipex *pip)
 		error_exit("Split failed\n");
 	if (!pip->cmd1[0] ||!pip->cmd2[0])
 		error_exit("Empty command\n");
-	pip->cmd_path1 = get_cmd_path(pip->cmd1[0], envp);
-	pip->cmd_path2 = get_cmd_path(pip->cmd2[0], envp);
+	pip->cmd_path1 = get_cmd_path(pip->cmd1[0], envi);
+	pip->cmd_path2 = get_cmd_path(pip->cmd2[0], envi);
 	if (!pip->cmd_path1 || !pip->cmd_path2)
 		error_exit("Command not found\n");
-	pip->envp = envp;		
+	pip->envi = envi;
 }

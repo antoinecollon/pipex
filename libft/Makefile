@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acollon <acollon@student.s19.be>           +#+  +:+       +#+         #
+#    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/13 14:39:44 by acollon           #+#    #+#              #
-#    Updated: 2025/04/13 14:56:07 by acollon          ###   ########.fr        #
+#    Updated: 2025/07/26 16:33:37 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,9 @@ SRC		=	ft_isalpha.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putnbr_fd.c \
-			ft_putendl_fd.c
-
-BONUS	=	ft_lstnew_bonus.c \
+			ft_putendl_fd.c \
+			ft_atol.c \
+			ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \
 			ft_lstadd_back_bonus.c \
 			ft_lstclear_bonus.c \
@@ -54,27 +54,31 @@ BONUS	=	ft_lstnew_bonus.c \
 			ft_lstiter_bonus.c \
 			ft_lstlast_bonus.c \
 			ft_lstmap_bonus.c \
-			ft_lstsize_bonus.c
+			ft_lstsize_bonus.c \
+			gnl/get_next_line.c \
+			gnl/get_next_line_utils.c \
+			ft_free_split.c
 
 OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(BONUS:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I$(PRINTF_DIR)
 RM = rm -f
+PRINTF_DIR = ft_printf
+PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(PRINTF)
 	ar rcs $@ $^
 
-bonus: $(OBJ) $(OBJ_BONUS)
-	ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
-
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
+	
 %.o: %.c libft.h 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
