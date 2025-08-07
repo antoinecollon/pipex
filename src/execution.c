@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:50:28 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:54:45 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/29 09:51:26 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	child1(t_pipex *pip)
 {
 	if (dup2(pip->infile, STDIN_FILENO) < 0)
-		perror_exit(pip, "dup2 infile\n");
+		perror_exit(pip, "dup2 infile");
 	if (dup2(pip->pipefd[1], STDOUT_FILENO) < 0)
-		perror_exit(pip, "dup2 pipe write\n");
+		perror_exit(pip, "dup2 pipe write");
 	close (pip->pipefd[0]);
 	close(pip->pipefd[1]);
 	close(pip->infile);
 	close(pip->outfile);
 	execve(pip->cmd_path1, pip->cmd1, pip->envi);
-	perror_exit(pip, "execve cmd1\n");
+	perror_exit(pip, "execve cmd1");
 }
 
 void	child2(t_pipex *pip)

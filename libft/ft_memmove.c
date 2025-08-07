@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 21:53:22 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/26 18:15:58 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/29 09:48:55 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 // 	char *s2 = NULL;
 // 	int size = 5;
 // 	char *test;
-	
 // 	test = (char *)ft_memmove(s1, s2, size);
-	
 // 	printf("%s\n", test);
 // }

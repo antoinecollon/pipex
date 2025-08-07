@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 08:41:54 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/07 14:30:34 by acollon          ###   ########.fr       */
+/*   Created: 2025/08/07 14:41:10 by acollon           #+#    #+#             */
+/*   Updated: 2025/08/07 15:44:55 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../libft/libft.h"
 # include <stdlib.h>
@@ -26,28 +26,15 @@
 
 typedef struct s_pipex
 {
-	int		infile;
-	int		outfile;
-	int		pipefd[2];
-	pid_t	pid1;
-	pid_t	pid2;
-	char	**cmd1;
-	char	**cmd2;
-	char	*cmd_path1;
-	char	*cmd_path2;
-	char	**envi;
+	int				node_pos;
+	int				pipefd[2];
+	pid_t			pid;
+	char			**cmd;
+	char			*cmd_path;
+	char			**envi;
+	struct s_pipex	*next;
 }	t_pipex;
 
-/* error_handler.c*/
+/* error_handler.c */
 void	perror_exit(t_pipex *pip, const char *context);
-void	cleanup(t_pipex *pip);
-
-/* parsing.c */
-void	parse_args(char **av, char **envp, t_pipex *pip);
-
-/* execution.c */
-void	execute(t_pipex *pip);
-void	child1(t_pipex *pip);
-void	child2(t_pipex *pip);
-
 #endif
