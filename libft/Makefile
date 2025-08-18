@@ -67,8 +67,9 @@ SRC = \
 		ft_printf/src/ft_puthex.c \
 		ft_printf/src/ft_putptr.c \
 		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-		ft_free_split.c
+		ft_free_split.c \
+		ft_realloc_tab.c
+# 		get_next_line/get_next_line_utils.c \
 
 OBJS = $(SRC:.c=.o)
 

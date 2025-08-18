@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:41:19 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/10 11:35:54 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/14 12:34:36 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,13 @@ void	free_pipeline(t_pipex **pip)
 	}
 }
 
+void	free_all_node(t_pipex *pip)
+{
+	t_pipex	*tmp;
+
+	tmp = pip;
+	while (tmp && tmp->prev)
+		tmp = tmp->prev;
+	if (tmp)
+		free_pipeline(&tmp);
+}

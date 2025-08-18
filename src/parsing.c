@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:41:37 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/10 09:55:12 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/14 15:06:01 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	**get_path(char **envi)
 	while (envi && envi[i])
 	{
 		if (ft_strncmp(envi[i], "PATH=", 5) == 0)
-			return (ft_split(envi[i] + 5, ":"));
+			return (ft_split(envi[i] + 5, ':'));
 		i++;
 	}
 	return (NULL);

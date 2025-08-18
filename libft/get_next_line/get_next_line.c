@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:55:47 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/19 17:52:48 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:56:58 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,23 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(int argc, char **argv)
-{
-	int		fd;
-	char	*line;
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	if (argc != 2)
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (0);
-}
+// 	if (argc != 2)
+// 		return (1);
+// 	fd = open(argv[1], O_RDONLY);
+// 	if (fd < 0)
+// 		return (1);
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }

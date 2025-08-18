@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:40:59 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/10 11:19:48 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/14 15:42:01 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ static t_pipex	*create_node(char *cmd, char **envi, int pos)
 	if (!pip)
 		return (NULL);
 	init_node_info(pip, pos, envi);
-	pip->cmd = ft_split(cmd, ' ');
+	pip->cmd = split_with_quotes(cmd);
 	if (!pip->cmd || !pip->cmd[0])
 	{
+		ft_putendl_fd("pipex: empty command", 2);
 		if (pip->cmd)
 			ft_free_split(pip->cmd);
 		return (free(pip), NULL);
@@ -41,6 +42,7 @@ static t_pipex	*create_node(char *cmd, char **envi, int pos)
 	pip->cmd_path = get_cmd_path(pip->cmd[0], envi);
 	if (!pip->cmd_path)
 	{
+		ft_putendl_fd("pipex: command not found", 2);
 		ft_free_split(pip->cmd);
 		return (free(pip), NULL);
 	}

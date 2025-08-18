@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:41:10 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/10 11:41:16 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/15 11:37:47 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,35 @@ typedef struct s_pipex
 	struct s_pipex	*prev;
 }	t_pipex;
 
+/* pipex_bonus.c */
+void		child_process(t_pipex *pip, int infile, int outfile);
+void		parent_process(t_pipex *pip, int infile, int outfile);
+void		perror_exit_child(t_pipex *p, int in, int out, const char *context);
+void		perror_exit_parent(t_pipex *pip, int outfile, const char *context);
+void		perror_exit(t_pipex *pip, const char *context);
+
 /* handle_close.c  */
-void	close_child_fd(t_pipex *pip, int infile, int outfile);
-void	close_parent_fd(t_pipex *pip, int infile);
-void	close_last_fd(t_pipex *pip, int outfile);
-void	free_pipeline(t_pipex **pip);
+void		close_child_fd(t_pipex *pip, int infile, int outfile);
+void		close_parent_fd(t_pipex *pip, int infile);
+void		close_last_fd(t_pipex *pip, int outfile);
+void		free_pipeline(t_pipex **pip);
+void		free_all_node(t_pipex *pip);
 
 /* pipeline_builder.c */
-t_pipex	*build_pipeline(int ac, char **av, char **envi);
+t_pipex		*build_pipeline(int ac, char **av, char **envi);
 
 /* parsing_bonus.c */
-char	**get_path(char **envi);
-char	*get_cmd_path(char *cmd, char **envi);
+char		**get_path(char **envi);
+char		*get_cmd_path(char *cmd, char **envi);
+int			here_doc_read(const char *limit);
+int			is_here_doc(int ac, char **av);
+char		**split_with_quotes(const char *str);
+
+/* split_argv_utils.c */
+void		skip_spaces(const char *str, int *i);
+size_t		word_len(const char *str, int start, int end);
+int			find_word_end(const char *str, int start, char *quote_state);
+void		copy_word(char *cpy, const char *str, int start, int end);
+char		*get_word(const char *str, int *i);
 
 #endif

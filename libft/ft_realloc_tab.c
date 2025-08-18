@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_realloc_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 15:25:46 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/14 15:01:05 by acollon          ###   ########.fr       */
+/*   Created: 2025/08/14 16:57:18 by acollon           #+#    #+#             */
+/*   Updated: 2025/08/16 10:12:38 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_realloc_tab(char ***tab, char *new_str, int *count)
 {
-	int	i;
+	char	**old_tab;
+	char	**new_tab;
+	int		i;
 
+	old_tab = *tab;
+	new_tab = (char **)malloc(sizeof(char *) * (*count + 2));
+	if (!new_tab)
+		return (0);
 	i = 0;
-	if (!s1 ||!s2)
-		return (-1);
-	while ((unsigned char)s1[i] && (unsigned char)s2[i])
+	while (i < *count)
 	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		new_tab[i] = old_tab[i];
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	new_tab[i] = new_str;
+	new_tab[i + 1] = NULL;
+	*tab = new_tab;
+	if (!old_tab)
+		ft_free_split(old_tab);
+	(*count)++;
+	return (1);
 }
