@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:57:18 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/16 10:12:38 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/24 13:21:38 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	ft_realloc_tab(char ***tab, char *new_str, int *count)
 	new_tab[i] = new_str;
 	new_tab[i + 1] = NULL;
 	*tab = new_tab;
-	if (!old_tab)
-		ft_free_split(old_tab);
+	if (old_tab)
+		free(old_tab);
 	(*count)++;
 	return (1);
 }

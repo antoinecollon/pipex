@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:40:59 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/14 15:42:01 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/24 13:38:53 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static void	double_link(t_pipex **head, t_pipex *pip)
 	pip->prev = tmp;
 }
 
-static int	node_pos(int i, int ac)
+static int	node_pos(int i, int ac, int start)
 {
-	if (i == 2)
+	if (i == start)
 		return (NODE_FIRST);
 	if (i == ac - 2)
 		return (NODE_LAST);
@@ -84,20 +84,21 @@ t_pipex	*build_pipeline(int ac, char **av, char **envi)
 	t_pipex	*head;
 	int		i;
 	int		pos;
+	int		start;
 
 	head = NULL;
 	if (ac < 5)
 		return (NULL);
 	i = 2;
+	if (is_here_doc(ac, av))
+		i = 3;
+	start = i;
 	while (i <= ac - 2)
 	{
-		pos = node_pos(i, ac);
+		pos = node_pos(i, ac, start);
 		pip = create_node(av[i], envi, pos);
 		if (!pip)
-		{
-			free_pipeline(&head);
-			return (NULL);
-		}
+			return (free_pipeline(&head), NULL);
 		double_link(&head, pip);
 		i++;
 	}

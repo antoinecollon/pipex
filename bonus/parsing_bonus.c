@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:46:10 by acollon           #+#    #+#             */
-/*   Updated: 2025/08/15 17:19:36 by acollon          ###   ########.fr       */
+/*   Updated: 2025/08/24 14:01:46 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,32 +90,6 @@ int	here_doc_read(const char *limit)
 	return (fd[0]);
 }
 
-// char	**split_with_quotes(const char *str)
-// {
-// 	int		i;
-// 	int		count;
-// 	char	**split;
-// 	char	*word;
-
-// 	if (!str)
-// 		return (NULL);
-// 	i = 0;
-// 	count = 0;
-// 	split = NULL;
-// 	while (str[i])
-// 	{
-// 		skip_spaces(str, &i);
-// 		if (!str[i])
-// 			break ;
-// 		word = get_word(str, &i);
-// 		if (!word)
-// 			return (ft_free_split(split), NULL);
-// 		split = ft_realloc_tab(split, word, &count);
-// 		if (!split)
-// 			return (NULL);
-// 	}
-// 	return (split);
-// }
 char	**split_with_quotes(const char *str)
 {
 	int		i;
